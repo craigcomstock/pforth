@@ -25,6 +25,7 @@ WIDTHOPT=
 
 FULL_WARNINGS =  \
         --std=c89 \
+        -fPIC \
         -fsigned-char \
         -fno-builtin \
         -fno-unroll-loops \
