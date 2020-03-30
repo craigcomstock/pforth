@@ -11,3 +11,4 @@ fth/fatest1.txt
 fth/pforth.dic
 **/.DS_Store
 
+csrc/cscope.out
