@@ -22,7 +22,12 @@ PFDICDAT     = pfdicdat.h
 PFORTHAPP    = pforth_standalone
 
 # This is needed to get pForth to build on Snow Leopard and other 64 bit platforms.
-WIDTHOPT=
+WIDTHOPT=-L$(CFEDIR)/libpromises/.libs -lpromises \
+	-L$(CFEDIR)/cf-agent/.libs -lcf-agent \
+	-o $(CFEDIR)/cf-agent/.libs/cf-agent.o \
+	-lpcre \
+	-llmdb -lssl -lcrypto -lacl -lcurl -lpq -lxml2 -ldl -lrt -lm -lpam -lvirt
+# including cf-agent lib breaks including cf-agent.c? Why is that included?
 
 FULL_WARNINGS =  \
 #        --std=c89 \

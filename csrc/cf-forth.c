@@ -2,6 +2,7 @@
 #include "pforth.h"
 #include "pf_all.h"
 #include "generic_agent.h"  /* GenericAgentConfig */
+#include "promises.h"
 
 extern void EvalContextStackPushPromiseTypeFrame(EvalContext *ctx, const PromiseType *owner);
 extern void KeepPromises(EvalContext *ctx, const Policy *policy, GenericAgentConfig *config);

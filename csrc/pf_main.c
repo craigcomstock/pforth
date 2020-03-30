@@ -45,7 +45,7 @@
 #endif
 
 #ifdef PF_EMBEDDED
-int main( void )
+int _main( void )
 {
     char IfInit = 0;
     const char *DicName = NULL;
@@ -55,7 +55,7 @@ int main( void )
 }
 #else
 
-int main( int argc, char **argv )
+int _main( int argc, char **argv )
 {
 #ifdef PF_STATIC_DIC
     const char *DicName = NULL;
