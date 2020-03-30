@@ -17,6 +17,7 @@ FTHDIR       = $(PFORTHDIR)/fth
 CFEDIR       = ../../../../..
 
 PFDICAPP     = pforth
+PFLIB        = pforth.a
 PFORTHDIC    = pforth.dic
 PFDICDAT     = pfdicdat.h
 PFORTHAPP    = pforth_standalone
@@ -107,6 +108,9 @@ pffiles:
 	@echo ${PFEMBOBJS}
 
 # Build pforth by compiling 'C' source.
+$(PFLIB): $(PFOBJS)
+	ar rcs $(PFLIB) *.o
+
 $(PFDICAPP): $(PFINCLUDES) $(PFOBJS)
 	$(LINK) -o $@ $(PFOBJS) $(LDADD) -lm
 
