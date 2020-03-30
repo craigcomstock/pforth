@@ -14,6 +14,7 @@ SRCDIR       = ../..
 PFORTHDIR    = $(SRCDIR)
 CSRCDIR      = $(PFORTHDIR)/csrc
 FTHDIR       = $(PFORTHDIR)/fth
+CFEDIR       = ../../../../..
 
 PFDICAPP     = pforth
 PFORTHDIC    = pforth.dic
@@ -24,7 +25,7 @@ PFORTHAPP    = pforth_standalone
 WIDTHOPT=
 
 FULL_WARNINGS =  \
-        --std=c89 \
+#        --std=c89 \
         -fPIC \
         -fsigned-char \
         -fno-builtin \
@@ -54,15 +55,20 @@ PFINCLUDES = pf_all.h pf_cglue.h pf_clib.h pf_core.h pf_float.h \
 PFBASESOURCE = pf_cglue.c pf_clib.c pf_core.c pf_inner.c \
 	pf_io.c pf_io_none.c pf_main.c pf_mem.c pf_save.c \
 	pf_text.c pf_words.c pfcompil.c pfcustom.c
-PFSOURCE = $(PFBASESOURCE) $(IO_SOURCE)
+PFSOURCE = $(PFBASESOURCE) $(IO_SOURCE) cf-forth.c
 
 VPATH = .:$(CSRCDIR):$(CSRCDIR)/posix:$(CSRCDIR)/stdio:$(CSRCDIR)/win32_console:$(CSRCDIR)/win32
 
 XCFLAGS = $(CCOPTS)
-XCPPFLAGS = -DPF_SUPPORT_FP -D_DEFAULT_SOURCE -D_GNU_SOURCE
+XCPPFLAGS = -DPF_SUPPORT_FP -D_DEFAULT_SOURCE -D_GNU_SOURCE -DHAVE_DIRENT_H -DHAVE_DECL_SOCKETPAIR -DHAVE_NETINET_IP_H -DHAVE_SOCKLEN_T -DHAVE_DECL_SETNETGRENT -DHAVE_DECL_ENDNETGRENT -DHAVE_DECL_STRSTR -DHAVE_DECL_STRCASESTR -DHAVE_DECL_STRDUP -DHAVE_DECL_MEMRCHR -DHAVE_DECL_MEMDUP -DHAVE_DECL_MEMMEM -DHAVE_DECL_STRCHRNUL -DHAVE_DECL_LE32TOH -DHAVE_DECL_MKDTEMP
 XLDFLAGS = $(WIDTHOPT)
 
-CPPFLAGS = -I. $(XCPPFLAGS)
+CPPFLAGS = -I. \
+	-I$(CFEDIR)/libpromises \
+	-I$(CFEDIR)/libntech/libutils \
+	-I$(CFEDIR)/libcfnet \
+	-I$(CFEDIR) \
+	$(XCPPFLAGS)
 CFLAGS = $(XCFLAGS)
 LDFLAGS = $(XLDFLAGS)
 
